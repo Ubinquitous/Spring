@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/todoAjax.js"></script>
+    <h1>Todo List</h1>
+    <div>
+        <label for="input-data">할 일</label>
+        <input id="input-data" type="text" placeholder="할 일을 입력하세요.">
+        <button onclick="dataSend()">등록</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>할 일</td>
+                <td>완료여부</td>
+                <td>삭제</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entity: ${response}">
+            <td th:text = ${entity.id}></td>
+            <td th:text = ${entity.content}></td>
+            <td th:text = ${entity.completed}></td>
+            <td><button th:onclick="deleteEntity([[${entity.id}]])">삭제</button></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
